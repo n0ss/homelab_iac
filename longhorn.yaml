@@ -4884,6 +4884,8 @@ spec:
         imagePullPolicy: IfNotPresent
         image: longhornio/longhorn-share-manager:v1.7.1
         command: ["sh", "-c", "echo share-manager image pulled && sleep infinity"]
+      nodeSelector:
+        longhorn: "true"
       volumes:
       - name: dev
         hostPath:
@@ -4969,6 +4971,8 @@ spec:
           - name: CSI_LIVENESS_PROBE_IMAGE
             value: "longhornio/livenessprobe:v2.14.0"
       priorityClassName: "longhorn-critical"
+      nodeSelector:
+        longhorn: "true"
       serviceAccountName: longhorn-service-account
       securityContext:
         runAsUser: 0
@@ -5029,6 +5033,8 @@ spec:
             value: "http://longhorn-backend:9500"
           - name: LONGHORN_UI_PORT
             value: "8000"
+      nodeSelector:
+        longhorn: "true"
       volumes:
       - emptyDir: {}
         name: nginx-cache
